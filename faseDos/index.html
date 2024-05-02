@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto fase dos</title>
+</head>
+<body>
+	<div class="fondo">
+		<h1 class="title">Proyecto fase dos</h1>
+	</div>
+	<input type="file" id="fileInput" accept=".asm">
+	<div class="contenedor-boton">
+		<button onclick="readFile()" class="botones">Lectura</button>
+		<br>
+		<button onclick="splitContent()" class="botones">Analizar</button> 
+		<br>
+	</div>
+	<div class="contenedor">
+		<textarea id="lectura" rows="50" cols="40"></textarea>
+		
+		<textarea id="analizado" rows="50" cols="40"></textarea>
+
+		<div id="tiposContent"></div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
+

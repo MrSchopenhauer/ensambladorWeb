@@ -1,0 +1,39 @@
+.title{
+	font-size: 45px;
+	background-color: rgb(255, 127,48);
+	color:white;
+	font-weight:bold;
+	text-align: center;
+	width: 500px;
+	margin: auto;
+}
+
+.botones{
+	display: block;
+	color: blue;
+	font-size: 18px;
+	padding: .2em;
+}
+	
+.contenedor{
+	display:flex;
+}
+
+
+#fileInput{
+	font-size:18px;
+}
+
+.contenedor-boton{
+	display: flex;
+	margin-right: 10px;
+}
+
+#lectura,
+#analizado,
+#tiposContent {
+    width: 30%; /* Ajusta el ancho según sea necesario */
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
