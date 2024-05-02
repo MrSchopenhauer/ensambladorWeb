@@ -1,0 +1,31 @@
+.title{
+	font-size: 45px;
+	background-color: rgb(255, 127,48);
+	color:white;
+	font-weight:bold;
+	text-align: center;
+	width: 500px;
+	margin: auto;
+}
+
+.botones{
+	display: block;
+	color: blue;
+	font-size: 18px;
+	padding: .2em;
+}
+	
+.lectura{
+	display:inline;
+	font-size:15px; 
+}
+
+#fileInput{
+	font-size:18px;
+}
+
+.contenedor-boton{
+	display: flex;
+	margin-right: 10px;
+}
+
