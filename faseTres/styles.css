@@ -1,0 +1,134 @@
+body {
+
+
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+
+.title{
+	font-size: 45px;
+	background-color: rgb(255,127,48)
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	width: 500px;
+	margin: auto;	
+
+}
+
+#originalContent,
+#separatedContent,
+#tiposContent {
+    height: 400px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+#separatedContent,
+#tiposContent,
+#semantiContent,
+#semantiContent1 {
+    margin-left: 30px;
+}
+
+#originalContent,
+#analizado {
+    width: 280px;
+    height: 400px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+#separatedContent {
+    width: 150px;
+    height: 400px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+#tiposContent {
+    width: 280px;
+    height: 400px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+#semantiContent {
+    width: 400px;
+    height: 400px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll;
+}
+#semantiContent1 {
+    width: 400px;
+    height: 400px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+#editableContent {
+    width: 250px;
+    height: 400px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.container {
+    box-shadow: 4px 5px 13px 6px #8f8f8f;
+    height: 95vh;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #004000;
+    font-family: fantasy;
+    font-weight: bolder;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #004000;
+    font-family: fantasy;
+    font-weight: bolder;
+}
+
+#fileInput {
+    margin-bottom: 25px;
+}
+
+.contenidoGral {
+    display:flex;
+    margin-left: 2%;
+}
+
+.contenidoGral div,textarea{
+ font-size: 12px;
+}
+
+#tiposContent table{
+    border: 1px solid #fbf6f600;
+}
+
+#semantiContent #titulo{
+    text-align: center;
+}
+
+#semantiContent1 #titulo{
+    text-align: center;
+}
