@@ -78,11 +78,11 @@ function verificarInstrucciones() {
   let resultados = [];
 
   const nemonicos = [
-    "MOV", "ADD", "SUB", "CMP", "JMP", "JE", "JNE", "JG", "JL", "INC", "DEC", "LOOP"
+    "MUL", "JNE", "POP", "JMP", "CMP", "SUB", "INC", "SHL", "AND", "CALL"
   ];
   
   const registros = [
-    "EAX", "AX", "AH", "AL", "EBX", "BX", "BH", "BL", "ECX", "CX", "CH", "CL", "EDX", "DX", "DH", "DL", "ESI", "SI", "EDI", "DI", "EBP", "SP", "ESP", "BP", "CS", "SS", "DS", "ES", "FS", "GS"
+    "EAX", "AX", "AH", "AL", "EBX", "BX", "BH", "BL", "ECX", "CX", "CH", "CL", "EDX", "DX", "DH", "DL", "ESI", "SI", "EDI", "DI", "EBP", "SP", "ESP", "BP"
   ];
 
   lines.forEach(line => {
@@ -97,13 +97,48 @@ function verificarInstrucciones() {
 
     if (nemonicos.includes(mnem)) {
       isValid = true;
-      const operandos = ops.split(",");
-      operandos.forEach(op => {
-        op = op.trim();
-        if (op && !registros.includes(op) && isNaN(parseInt(op))) {
+      const operandos = ops.split(",").map(op => op.trim());
+
+      switch (mnem) {
+        case "MUL":
+          // MUL requires one register operand
+          isValid = operandos.length === 1 && registros.includes(operandos[0]);
+          break;
+        case "JNE":
+        case "JMP":
+        case "CALL":
+          // JNE, JMP, and CALL require one label operand (no comma)
+          isValid = operandos.length === 1 && /^[a-zA-Z_]\w*$/.test(operandos[0]);
+          break;
+        case "POP":
+          // POP requires one memory address or register operand
+          isValid = operandos.length === 1 && (registros.includes(operandos[0]) || isNaN(parseInt(operandos[0])));
+          break;
+	case "CMP":
+ 	 // CMP requires first operand to be a register and second operand to be a register or immediate value
+ 	 isValid = operandos.length === 2 && registros.includes(operandos[0]) && (registros.includes(operandos[1]) || !isNaN(parseInt(operandos[1])));
+ 	 break;
+        case "SUB":
+          // SUB requires two distinct operands (registers)
+          isValid = operandos.length === 2 && operandos[0] !== operandos[1] && registros.includes(operandos[0]) && registros.includes(operandos[1]);
+          break;
+	case "INC":
+  	// INC requires one register operand
+  	isValid = operandos.length === 1 && registros.includes(operandos[0]);
+ 	break;
+	case "AND":
+  	// AND requires one register operand and one register operand or immediate value operand
+  	isValid = operandos.length === 2 && registros.includes(operandos[0]) && (registros.includes(operandos[1]) || !isNaN(parseInt(operandos[1])));
+  	break;
+	case "SHL":
+  	// SHL requires one register operand and one immediate value operand (mayor que 1)
+  	isValid = operandos.length === 2 && registros.includes(operandos[0]) && parseInt(operandos[1]) > 1;
+ 	 break;
+        default:
+          // This shouldn't happen, but handle unexpected mnemonics
           isValid = false;
-        }
-      });
+          break;
+      }
     }
 
     resultados.push({
@@ -114,6 +149,8 @@ function verificarInstrucciones() {
 
   crearTablaVerificacion(resultados);
 }
+
+
 
 function crearTablaVerificacion(resultados) {
   const divElement = document.getElementById('verificacionContent');
@@ -148,6 +185,7 @@ function crearTablaVerificacion(resultados) {
   divElement.appendChild(table);
 }
 
+
 function identificarPalabrasEnsamblador(palabras) {
   // Expresiones regulares para identificar registros y variables
   const registroRegExp = /\b(EAX|AX|AH|AL|EBX|BX|BH|BL|ECX|CX|CH|CL|EDX|DX|DH|DL|ESI|SI|EDI|DI|EBP|SP|ESP|BP|CS|SS|DS|ES|FS|GS)\b/i;
@@ -163,7 +201,7 @@ function identificarPalabrasEnsamblador(palabras) {
 
   // Arrays para almacenar registros, variables y palabras reservadas
   const nemonicos = [
-    "MOV", "ADD", "SUB", "CMP", "JMP", "JE", "JNE", "JG", "JL", "INC", "DEC", "LOOP"
+    "MOV", "ADD", "SUB", "CMP", "JMP", "JE", "JNE", "JG", "JL", "INC", "DEC", "LOOP", "MUL"
   ];
   const palabrasReservadas = [
     "FLAT", "STDCALL", "EXITPROCESS", "PROTO", "DWEXITCODE", "MAIN", "PROC", "ENDP", "END", "4096", "INVOKE", "?"
@@ -393,4 +431,3 @@ function analisisSemantico(lines) {
   table1.appendChild(tbody1);
   divElement2.appendChild(table1);
 }
-
