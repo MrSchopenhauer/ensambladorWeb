@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto fase cuatro</title>
+</head>
+<body>
+  <div class="fondo">
+    <h1>Proyecto fase 4</h1>
+  </div>
+  <form id="fileForm">
+    <input type="file" id="fileInput" accept=".asm">
+    <button type="button" onclick="readFile()" class="btn btn-dark">
+    Lectura
+    </button>
+    <button type="button" onclick="verificarInstrucciones()" class="btn btn-dark">Verificar Instrucciones</button>
+  </form>
+  <div class="contenidoGral">
+    <textarea name="textarea" rows="10" cols="100" id="originalContent"></textarea>
+    <div id="semantiContent" class="col-3 col-md-3">
+    <div id="verificacionContent" class="col-3 col-md-3">
+      <h4 id="titulo">Verificación de Instrucciones</h4>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
